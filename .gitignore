@@ -1,0 +1,91 @@
+# ==========================
+# 🧱 Build outputs
+# ==========================
+target/
+out/
+build/
+*.class
+*.jar
+*.war
+*.ear
+*.exe
+*.msi
+*.zip
+
+# ==========================
+# 🧰 IDE settings
+# ==========================
+# IntelliJ IDEA
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# VS Code
+.vscode/
+
+# Eclipse
+.classpath
+.project
+.settings/
+.factorypath
+
+# NetBeans
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+# ==========================
+# ⚙️ Maven Wrapper (keep!)
+# ==========================
+# 保留 mvnw / mvnw.cmd 與 .mvn/wrapper 目錄（不要忽略）
+!mvnw
+!mvnw.cmd
+!.mvn/wrapper/maven-wrapper.jar
+!.mvn/wrapper/maven-wrapper.properties
+
+# ==========================
+# 🧾 Logs & Temporary Files
+# ==========================
+*.log
+*.tmp
+*.bak
+*.swp
+
+# ==========================
+# 💥 JVM crash files
+# ==========================
+hs_err_pid*
+replay_pid*
+
+# ==========================
+# 🪟 OS-specific
+# ==========================
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Linux
+*~
+
+# ==========================
+# 🧩 Packaging artifacts (選擇性)
+# ==========================
+# 若使用 jpackage 產生 exe/msi，可以忽略產物
+target/dist/
+*.app
+*.dmg
+
+# ==========================
+# 🧪 Tests
+# ==========================
+/test-output/
+*.coverage
