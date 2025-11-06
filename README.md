@@ -1,7 +1,7 @@
 <div align="center">
 
 # 🕒 CountDown Timer (JavaFX)
-![App Preview](https://raw.githubusercontent.com/CHEN-YUNGLUNG/JavaProject/main/screenshot.png)
+![App Preview](./screenshot.png)
 ### 🧑‍💻 A Simple JavaFX Countdown Timer App ｜ シンプルな JavaFX カウントダウンタイマー
 
 </div>
