@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
@@ -13,6 +14,7 @@
         <maven.compiler.release>25</maven.compiler.release>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <javafx.version>23.0.1</javafx.version>
+        <project.build.finalName>countdown-timer</project.build.finalName>
     </properties>
 
     <dependencies>
@@ -26,11 +28,25 @@
             <artifactId>javafx-fxml</artifactId>
             <version>${javafx.version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-media</artifactId>
+            <version>${javafx.version}</version>
+        </dependency>
     </dependencies>
+
+    <pluginRepositories>
+        <pluginRepository>
+            <id>central</id>
+            <url>https://repo1.maven.org/maven2</url>
+            <releases><enabled>true</enabled></releases>
+            <snapshots><enabled>false</enabled></snapshots>
+        </pluginRepository>
+    </pluginRepositories>
 
     <build>
         <plugins>
-            <!-- 編譯器 -->
+            <!-- compiler -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -40,38 +56,7 @@
                 </configuration>
             </plugin>
 
-            <!-- JavaFX：run + jlink -->
-            <plugin>
-                <groupId>org.openjfx</groupId>
-                <artifactId>javafx-maven-plugin</artifactId>
-                <version>0.0.8</version>
-                <configuration>
-                    <mainClass>org.example.CountDwn</mainClass>
-                </configuration>
-                <executions>
-                    <!-- 讓 mvn javafx:run 可用 -->
-                    <execution>
-                        <id>run</id>
-                        <goals><goal>run</goal></goals>
-                    </execution>
-                    <!-- 產生 runtime image（含 JavaFX 模組與精簡 JRE） -->
-                    <execution>
-                        <id>jlink</id>
-                        <goals><goal>jlink</goal></goals>
-                        <configuration>
-                            <launcher>CountDownTimer</launcher>
-                            <stripDebug>true</stripDebug>
-                            <noHeaderFiles>true</noHeaderFiles>
-                            <noManPages>true</noManPages>
-                            <!-- IntelliJ schema 不認得此屬性，實際可用 -->
-                            <jlinkZip>false</jlinkZip>
-                            <addModules>javafx.controls,javafx.fxml</addModules>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-
-            <!-- 建 fat-jar（如果你要一顆可執行 jar）-->
+            <!-- shaded jar (for jpackage main-jar) -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
@@ -84,9 +69,67 @@
                             <createDependencyReducedPom>false</createDependencyReducedPom>
                             <transformers>
                                 <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                    <mainClass>org.example.App</mainClass>
+                                    <mainClass>org.example.CountDwn</mainClass>
                                 </transformer>
                             </transformers>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- jlink runtime image to target/image -->
+            <plugin>
+                <groupId>org.openjfx</groupId>
+                <artifactId>javafx-maven-plugin</artifactId>
+                <version>0.0.8</version>
+                <configuration>
+                    <mainClass>org.example.CountDwn</mainClass>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>run</id>
+                        <goals><goal>run</goal></goals>
+                    </execution>
+                    <execution>
+                        <id>jlink</id>
+                        <phase>package</phase>
+                        <goals><goal>jlink</goal></goals>
+                        <configuration>
+                            <launcher>CountDwn</launcher>
+                            <stripDebug>true</stripDebug>
+                            <noHeaderFiles>true</noHeaderFiles>
+                            <noManPages>true</noManPages>
+                            <compress>2</compress>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- call JDK jpackage to make CountDwn.exe -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>3.4.1</version>
+                <executions>
+                    <execution>
+                        <id>jpackage-app-image</id>
+                        <phase>package</phase>
+                        <goals><goal>exec</goal></goals>
+                        <configuration>
+                            <executable>${java.home}/bin/jpackage.exe</executable>
+                            <arguments>
+                                <argument>--type</argument>         <argument>app-image</argument>
+                                <argument>--name</argument>         <argument>CountDwn</argument>
+                                <argument>--app-version</argument>  <argument>1.0.0</argument>
+                                <argument>--verbose</argument>
+
+                                <argument>--input</argument>        <argument>${project.build.directory}</argument>
+                                <argument>--main-jar</argument>     <argument>${project.artifactId}-${project.version}.jar</argument>
+                                <argument>--main-class</argument>   <argument>org.example.CountDwn</argument>
+
+                                <argument>--runtime-image</argument><argument>${project.build.directory}/image</argument>
+                                <argument>--dest</argument>         <argument>${project.build.directory}/dist-appimage</argument>
+                            </arguments>
                         </configuration>
                     </execution>
                 </executions>
