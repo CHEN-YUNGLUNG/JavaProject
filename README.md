@@ -2,6 +2,10 @@
 
 # 🕒 CountDown Timer (JavaFX)
 ![App Preview](./screenshot.png)
+📦 **[👉 下載免安裝版（Windows 64bit）](https://github.com/CHEN-YUNGLUNG/JavaProject/releases/latest)**  
+💡 解壓縮後直接執行 `CountDwn.exe` 即可使用（無需安裝）。  
+💬 解凍後すぐに `CountDwn.exe` を実行できます（インストール不要）。
+
 ### 🧑‍💻 A Simple JavaFX Countdown Timer App ｜ シンプルな JavaFX カウントダウンタイマー
 
 </div>
