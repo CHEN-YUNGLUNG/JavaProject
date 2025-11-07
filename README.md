@@ -1,3 +1,9 @@
+![Java](https://img.shields.io/badge/Java-25-blue)
+![JavaFX](https://img.shields.io/badge/JavaFX-23-orange)
+![Maven](https://img.shields.io/badge/Build-Maven-yellow)
+![IntelliJ](https://img.shields.io/badge/IDE-IntelliJ%20IDEA-lightblue)
+![Platform](https://img.shields.io/badge/Platform-Windows%2011-informational)
+![Status](https://img.shields.io/badge/Version-1.0.0-brightgreen)
 <div align="center">
 
 # 🕒 CountDown Timer (JavaFX)
@@ -5,12 +11,30 @@
 
 
 📦 **[👉 下載免安裝版（Windows 64bit）](https://github.com/CHEN-YUNGLUNG/JavaProject/releases/latest)**  
-💡 解壓縮後直接執行 `CountDwn.exe` 即可使用（無需安裝）。  
+💡 解壓縮後直接執行 `CountDwn.exe` 即可使用（無需安裝）。
+
+⚠️ **Windows Defender** 可能會顯示安全警告，選擇「詳細資訊 → 仍要執行」即可。
+
 💬 解凍後すぐに `CountDwn.exe` を実行できます（インストール不要）。
 
 ### 🧑‍💻 A Simple JavaFX Countdown Timer App ｜ シンプルな JavaFX カウントダウンタイマー
 
 </div>
+
+## 目次 / Table of Contents
+- [🧑‍💻 A Simple JavaFX Countdown Timer App ｜ シンプルな JavaFX カウントダウンタイマー](#-a-simple-javafx-countdown-timer-app--シンプルな-javafx-カウントダウンタイマー)
+- [🧭 專案概要 | プロジェクト概要](#-專案概要--プロジェクト概要)
+- [🧱 主要功能 | 主な機能](#-主要功能--主な機能)
+- [🛠 使用技術 | 使用技術](#-使用技術--使用技術)
+- [🧩 自學過程與定位 | 学習の過程と自己認識](#-自學過程與定位--学習の過程と自己認識)
+- [⚙️ 遇到的問題與解決方式 | 問題と解決方法](#-遇到的問題與解決方式--問題と解決方法)
+- [🚀 執行方式 | 実行方法](#-執行方式--実行方法)
+- [📂 可攜版檔案結構 | ポータブル版構成](#-可攜版檔案結構--ポータブル版構成)
+- [🧠 心得與未來目標 | 振り返りと今後](#-心得與未來目標--振り返りと今後)
+- [👨‍💻 作者 | 作者](#-作者--作者)
+- [📜 授權 | ライセンス](#-授權--ライセンス)
+
+
 
 ---
 
@@ -41,6 +65,8 @@
 ---
 
 ## 🧩 自學過程與定位 | 学習の過程と自己認識
+🎯 このプロジェクトは、JavaFXを通じて「GUI開発の基本構造」「モジュール化」「ビルド・配布プロセス」を学ぶことを目的としました。
+
 | 中文 | 日本語 |
 |------|---------|
 | 我是一名自學的初學者，雖然掌握基本語法，但對 GUI、模組化、打包流程都是第一次挑戰。 | 独学の初心者であり、基本文法は理解していますが、GUI・モジュール・パッケージ化は初めての挑戦でした。 |
